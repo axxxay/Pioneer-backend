@@ -30,3 +30,7 @@ GET http://localhost:5000/api-docs
 
 GET http://localhost:5000/api/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzExNTYyOTQ2fQ.lnMvESrY7gdXfsBwSMVAhz0hndjgtIfuDxtut6eHIfw
+
+###
+
+GET http://localhost:5000/crypto/eth-balance?address=0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8

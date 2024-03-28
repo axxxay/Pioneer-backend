@@ -1,6 +1,6 @@
 # Pioneer-Backend-Task
 
-This is a simple backend task built with Node.js, express.js, and SQLite. It consists of a 5 API endpoints.
+This is a simple backend task built with Node.js, express.js, and SQLite. It consists of a 6 API endpoints.
 
 ## Prerequisites
 
@@ -46,4 +46,5 @@ To run Pioneer-Backend-Task, follow these steps:
     GET    /api/users
     GET    /api-docs
     GET    /data/fetch-data-from-public-api
+    GET    /crypto/eth-balance
     ```

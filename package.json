@@ -19,6 +19,8 @@
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
     "swagger-ui-express": "^5.0.0",
+    "web3": "^4.7.0",
+    "web3-validator": "^2.0.5",
     "yamljs": "^0.3.0"
   }
 }

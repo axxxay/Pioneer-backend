@@ -136,6 +136,35 @@ paths:
               schema:
                 type: string
                 description: HTML content of the Swagger UI.
+  /crypto/eth-balance:
+    get:
+      summary: Get Ethereum balance
+      description: Returns the Ethereum balance of a given address.
+      parameters:
+        - in: query
+          name: address
+          schema:
+            type: string
+          required: true
+          description: The Ethereum address to get the balance for.
+      responses:
+        200:
+          description: A successful response returns the Ethereum balance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/Balance'
+        400:
+          description: Invalid Ethereum address
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message.
+                    example: "Invalid Ethereum address"
 definitions:
   User:
     type: object
@@ -163,3 +192,11 @@ definitions:
         type: string
       password:
         type: string
+  Balance:
+    type: object
+    required:
+      - balance
+    properties:
+      balance:
+        type: string
+        description: The Ethereum balance of the address.
