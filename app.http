@@ -1,5 +1,4 @@
-# POST http://localhost:5000/api/register
-POST https://pioneer-backend-93u6.onrender.com/api/register
+POST http://localhost:5000/api/register
 Content-Type: application/json
 
 {
@@ -20,7 +19,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5000/data/fetch-data-from-public-api?category=animal&limit=10
+GET http://localhost:5000/data/fetch-data-from-public-api?category=animals&limit=25
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzExNTYyOTQ2fQ.lnMvESrY7gdXfsBwSMVAhz0hndjgtIfuDxtut6eHIfw
 
 ###

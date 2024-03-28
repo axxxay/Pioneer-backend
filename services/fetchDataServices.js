@@ -15,7 +15,7 @@ const fetchDataFromPublicAPI = async (category, limit) => {
         }
         const response = await axios.get(apiUrl);
         const data = response.data;
-        if (limit && data.entries.length > limit) {
+        if (limit && data.entries && data.entries.length > limit) {
             data.entries = data.entries.slice(0, limit);
         }
         return data;
