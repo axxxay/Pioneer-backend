@@ -1,4 +1,5 @@
-POST http://localhost:5000/api/register
+# POST http://localhost:5000/api/register
+POST https://pioneer-backend-93u6.onrender.com/api/register
 Content-Type: application/json
 
 {
