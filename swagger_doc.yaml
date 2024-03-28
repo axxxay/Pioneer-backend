@@ -1,0 +1,165 @@
+swagger: '2.0'
+info:
+  title: User API
+  version: '1.0'
+paths:
+  /api/register:
+    post:
+      summary: Creates a new user
+      description: Checks whether the user already exists. If the user does not exist, a new user is created.
+      parameters:
+        - in: body
+          name: body
+          description: User object that needs to be added
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        201:
+          description: Successful user creation
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "User created successfully"
+        400:
+          description: Validation error
+        409:
+          description: User already exists
+  /api/login:
+    post:
+      summary: Logs in a user
+      description: Checks whether the user exists. If the user exists and the password is correct, a JWT token is returned. If the password is incorrect, a password error is returned.
+      parameters:
+        - in: body
+          name: body
+          description: User object that needs to be authenticated
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: Successful login
+          schema:
+            type: object
+            properties:
+              jwtToken:
+                type: string
+                example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        401:
+          description: Invalid password
+        404:
+          description: User does not exist
+  /data/fetch-data-from-public-api:
+    get:
+      summary: Fetches data from public API
+      description: Makes an API call to https://api.publicapis.org/entries? endpoint and returns the data. Only authenticated users can make an API call.
+      parameters:
+        - in: query
+          name: category
+          type: string
+          description: The category of the data to fetch
+        - in: query
+          name: limit
+          type: integer
+          description: The maximum number of data items to fetch
+        - in: header
+          name: Authorization
+          type: string
+          example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          description: Bearer JWT token for authentication
+          required: true
+      responses:
+        200:
+          description: Successful data fetch
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                example: 10
+              entries:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    API:
+                      type: string
+                      example: "OpenWeatherMap"
+                    Description:
+                      type: string
+                      example: "Weather data"
+                    Auth:
+                      type: string
+                      example: "apiKey"
+                    HTTPS:
+                      type: boolean
+                      example: true
+                    Cors:
+                      type: string
+                      example: "yes"
+                    Link:
+                      type: string
+                      example: "https://openweathermap.org/api"
+        401:
+          description: Invalid JWT token
+  /api/users:
+    get:
+      summary: Fetches a list of users
+      description: Returns a list of users. Only authenticated users can make an API call.
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          description: Bearer JWT token for authentication
+          required: true
+      responses:
+        200:
+          description: Successful data fetch
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        401:
+          description: Invalid JWT token
+  /api-docs:
+    get:
+      summary: Get API documentation
+      description: Returns the Swagger UI related to API docs.
+      responses:
+        200:
+          description: A successful response returns the Swagger UI related to API docs.
+          content:
+            text/html:
+              schema:
+                type: string
+                description: HTML content of the Swagger UI.
+definitions:
+  User:
+    type: object
+    required:
+      - username
+      - password
+      - email
+    properties:
+      username:
+        type: string
+        description: 'Username should be at least 6 characters'
+      password:
+        type: string
+        description: 'Password should be at least 8 characters and contain at least one uppercase, one lowercase, one digit and one special character'
+      email:
+        type: string
+        description: 'Email should be in a valid format'
+  Login:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+        type: string

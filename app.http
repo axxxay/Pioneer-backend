@@ -1,0 +1,32 @@
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+    "username": "rahul1",
+    "password": "Rahul@123",
+    "email": "rahul@gmail.co"
+}
+
+###
+
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "Test@123"
+}
+
+###
+
+GET http://localhost:5000/data/fetch-data-from-public-api?category=animal&limit=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzExNTYyOTQ2fQ.lnMvESrY7gdXfsBwSMVAhz0hndjgtIfuDxtut6eHIfw
+
+###
+
+GET http://localhost:5000/api-docs
+
+###
+
+GET http://localhost:5000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzExNTYyOTQ2fQ.lnMvESrY7gdXfsBwSMVAhz0hndjgtIfuDxtut6eHIfw
